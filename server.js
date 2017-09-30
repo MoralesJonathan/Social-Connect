@@ -66,7 +66,7 @@ app.get('/logingin', function(req, res) {
     );
 });
 
-app.get('/dash', function(req, res) {
+app.get('/home', function(req, res) {
     if (req.query == null || undefined) {
         res.redirect('/login')
     }
@@ -89,7 +89,7 @@ app.get('/dash', function(req, res) {
                         //handle error
                     }
                     else {
-                        res.render('dashboard', {
+                        res.render('home', {
                             access_token: access_token,
                             refresh_token: refresh_token,
                             data: JSON.parse(body)
@@ -148,7 +148,7 @@ app.get('/callback', function(req, res) {
                     console.log(body);
                 });
 
-                res.redirect('/dash?' +
+                res.redirect('/home?' +
                     querystring.stringify({
                         access_token: access_token,
                         refresh_token: refresh_token
