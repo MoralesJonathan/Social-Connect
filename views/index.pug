@@ -1,0 +1,51 @@
+extend boilerplate.pug
+
+block titleconfig
+    title Landing page
+block append stylesheets
+    link(rel="stylesheet" href="/css/index.css")
+    
+block content
+    section.hero.is-fullheight.is-dark
+        .hero-head
+            .container
+                nav.nav
+                    .container
+                        .nav-left
+                            a.nav-item(href='../index.html')
+                                img(src='../images/bulma-white.png', alt='Description')
+                        span.nav-toggle
+                            span
+                            span
+                            span
+                        .nav-right.nav-menu
+                            a.nav-item About
+                            a.nav-item Tour
+                            a.nav-item FAQ
+                            a.nav-item Contact
+                            span.nav-item
+                                a.button.is-default Get Early Access
+        .hero-body
+            .container.has-text-centered
+                .columns.is-vcentered
+                    .column.is-5
+                        figure.image.is-4by3
+                            img.promo-img(src='https://images.unsplash.com/photo-1461669802687-84a1aee43a29?dpr=1&auto=format&crop=entropy&fit=crop&w=800&h=600&q=80', alt='Description')
+                    .column.is-6.is-offset-1
+                        h1.title.is-2  Introducing Landing Page
+                        h2.subtitle.is-4  It's time to say hello to bulma.
+                        br
+                        p.control.has-addons.has-text-centered
+                            input.input.is-expanded.is-large(type='text', placeholder='Join the beta waitlist, you@example.org')
+                            a.button.is-large.is-danger.is-outlined Sign Up
+block foot
+      .hero-foot
+        .container
+          .tabs.is-centered
+            ul
+              li
+                a(href='http://bulma.io') Made with bulma
+              li
+                a Copyright 2016 Bulma
+              li
+                a(href='http://unsplash.com') Images via unsplash

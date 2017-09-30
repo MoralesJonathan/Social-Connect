@@ -148,7 +148,7 @@ app.get('/callback', function(req, res) {
                     console.log(body);
                 });
 
-                res.redirect('/?' +
+                res.redirect('/dash' +
                     querystring.stringify({
                         access_token: access_token,
                         refresh_token: refresh_token
@@ -188,5 +188,5 @@ app.get('/refresh_token', function(req, res) {
 
 
 app.get('/', function(req, res) {
-    res.send('helloworld')
+    res.render('index')
 })
