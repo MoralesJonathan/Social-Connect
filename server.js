@@ -8,7 +8,7 @@ var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var client_id = '3c9905935d774ba4a1bfc2a8654c2f70';
 var client_secret = 'a1bc0c827409469db373bab544774d57';
-var redirect_uri = 'https://spotifyapitest-jjm15c.c9users.io/callback';
+var redirect_uri = 'https://shellify-jjm15c.c9users.io/callback';
 var userSession;
 app.set('view engine', 'pug')
 
@@ -148,7 +148,7 @@ app.get('/callback', function(req, res) {
                     console.log(body);
                 });
 
-                res.redirect('/dash' +
+                res.redirect('/dash?' +
                     querystring.stringify({
                         access_token: access_token,
                         refresh_token: refresh_token

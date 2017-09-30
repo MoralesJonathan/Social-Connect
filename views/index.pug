@@ -12,8 +12,8 @@ block content
                 nav.nav
                     .container
                         .nav-left
-                            a.nav-item(href='../index.html')
-                                img(src='../images/bulma-white.png', alt='Description')
+                            a.nav-item(href='/index.html')
+                                img(src='/images/bulma-white.png', alt='Description')
                         span.nav-toggle
                             span
                             span
@@ -24,7 +24,7 @@ block content
                             a.nav-item FAQ
                             a.nav-item Contact
                             span.nav-item
-                                a.button.is-default Get Early Access
+                                a(href="/login").button.is-default Login
         .hero-body
             .container.has-text-centered
                 .columns.is-vcentered
@@ -38,14 +38,14 @@ block content
                         p.control.has-addons.has-text-centered
                             input.input.is-expanded.is-large(type='text', placeholder='Join the beta waitlist, you@example.org')
                             a.button.is-large.is-danger.is-outlined Sign Up
+        .hero-foot
+          .container
+            .tabs.is-centered
+              ul
+                li
+                  a(href='http://bulma.io') Made with bulma
+                li
+                  a Copyright 2016 Bulma
+                li
+                  a(href='http://unsplash.com') Images via unsplash   
 block foot
-      .hero-foot
-        .container
-          .tabs.is-centered
-            ul
-              li
-                a(href='http://bulma.io') Made with bulma
-              li
-                a Copyright 2016 Bulma
-              li
-                a(href='http://unsplash.com') Images via unsplash
