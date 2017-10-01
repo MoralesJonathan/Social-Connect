@@ -19,6 +19,7 @@ html(lang="en")
 								.pure-menu-link#trackName(href="#")
 							li.pure-menu-item
 								.pure-menu-link#trackArtists(href="#")
+								    p
 							li.pure-menu-item
 								a#prev.pure-menu-link(href="#") Prev
 							li.pure-menu-item
@@ -61,7 +62,7 @@ html(lang="en")
 				.chat-content
 					.chat-content-header.pure-g
 						.pure-u
-							img.chat-avatar#chatAvatar(width="64", height="64", alt="User avatar", src= userinfo.images[0].url, style="pading-top:10px")
+							img.chat-avatar#chatAvatar(width="64", height="64", alt="User avatar", src= userinfo.images[0].url, style="padding-top:10px")
 						.pure-u-3-4
 							- var name = userinfo.display_name 
 							h1.chat-content-title#user(data-uid= userinfo.id) Hello #{name} 
