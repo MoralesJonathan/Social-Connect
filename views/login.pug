@@ -6,7 +6,15 @@ block append stylesheets
     link(rel="stylesheet" href="/css/login.css")
     
 block content
-    .container
-        #login
-            h1 Testing spotify stuff...
-            a.btn.btn-primary(href='/logingin') Log in with Spotify
+    section.section
+        .container
+            .columns
+                .column.is-half
+                    center
+                        img(src="images/loginLeft.png")
+                .column.is-half
+                    #login
+                        h3.title.is-3 Sign into your Social Connect account
+                        center
+                            a(href='/logingin').button.is-success.is-outlined Log in with Spotify
+            

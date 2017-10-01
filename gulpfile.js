@@ -20,6 +20,18 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('public/css/'));
 });
 
+gulp.task('scss', function() {
+  return gulp.src('dev/sass/*.scss')
+    .pipe(plumber(function(error) {
+      console.log(error.toString());
+      this.emit('end');
+    }))
+    .pipe(sourcemaps.init())
+    .pipe(sass())
+    .pipe(sourcemaps.write('.'))
+    .pipe(gulp.dest('public/css/'));
+});
+
 gulp.task('minjs',  function() {
   return gulp.src('dev/js/*.js')
     .pipe(uglify())
@@ -61,13 +73,15 @@ gulp.task('deleteMaps', ['mincss'], function() {
 gulp.task('watchdev', function() {
   gulp.watch('dev/sass/sassy/*.sass');
   gulp.watch('dev/sass/*.sass', ['sass']);
+  gulp.watch('dev/sass/*.scss');
+  gulp.watch('dev/sass/*.scss', ['scss']); 
   gulp.watch('dev/css/*.css', ['movecss']);
   gulp.watch('dev/js/main/*.js');
   gulp.watch('dev/js/*.js', ['movejs']);
 });
 
-gulp.task('default', ['sass', 'movecss', 'movejs', 'movemaps', 'autoprefix'], function() {});
+gulp.task('default', ['sass', 'scss','movecss', 'movejs', 'movemaps', 'autoprefix'], function() {});
 
-gulp.task('watch', [ 'sass', 'movecss', 'movejs', 'movemaps', 'autoprefix', 'watchdev'], function() {});
+gulp.task('watch', [ 'sass','scss', 'movecss', 'movejs', 'movemaps', 'autoprefix', 'watchdev'], function() {});
 
-gulp.task('production', ['sass', 'minjs', 'autoprefix', 'mincss', 'deleteMaps'], function() {});
+gulp.task('production', ['sass','scss', 'minjs', 'autoprefix', 'mincss', 'deleteMaps'], function() {});

@@ -1,0 +1,14 @@
+extend boilerplate.pug
+
+block titleconfig
+    title Loading...
+block append stylesheets
+    link(rel="stylesheet" href="/css/home.css")
+    
+block content
+    h1 please wait while we load the page...
+    
+block append scripts
+    script.
+        window.location.pathname = '/home/done'
+        

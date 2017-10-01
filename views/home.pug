@@ -1,9 +1,85 @@
-extend boilerplate.pug
-
-block titleconfig
-    title Home
-block append stylesheets
-    link(rel="stylesheet" href="/css/home.css")
-    
-block content
-    h1 Hello world!
+doctype html
+html(lang="en")
+	head
+		meta(charset="utf-8")
+		meta(name="viewport", content="width=device-width, initial-scale=1.0")
+		meta(name="description", content="A social app for Spotify.")
+		title Home
+		link(rel="stylesheet", href="https://unpkg.com/purecss@1.0.0/build/pure-min.css", integrity="sha384-", crossorigin="anonymous")
+		link(rel="stylesheet", href="/css/layouts/home.css")
+	body
+		#layout.content.pure-g
+			#nav.pure-u
+				a.nav-menu-button(href="#") Menu
+				.nav-inner
+					img.pure-img#albumArt(src='http://via.placeholder.com/150x150')
+					.pure-menu
+						ul.pure-menu-list
+							li.pure-menu-item
+								.pure-menu-link#trackName(href="#")
+							li.pure-menu-item
+								.pure-menu-link#trackArtists(href="#")
+							li.pure-menu-item
+								a#prev.pure-menu-link(href="#") Prev
+							li.pure-menu-item
+								a#playpause.pure-menu-link(href="#") Play
+							li.pure-menu-item
+								a#next.pure-menu-link(href="#") Next
+							li.pure-menu-heading Online
+							#onlineFriends
+								- var listofFriends= friends
+								each item in listofFriends
+									if(item.status == 'Online')
+										li.pure-menu-item
+											a.pure-menu-link.messageFriend
+												.friend(id= item.socket, data-sid= item.id)
+													span.status-label-available= item.name
+									else
+										li.pure-menu-item
+											a.pure-menu-link.messageFriend
+												.friend(data-sid= item.id)
+													span.status-label-offline= item.name
+			#list.pure-u-1
+				.search.pure-g
+					.pure-u-1
+						form#userSearch.pure-form(style="padding: 9px; margin: 10px 0px;")
+							input#search.pure-input-rounded(type="text" placeholder="Type a name or chat")
+							button.pure-button(type="submit") Search
+				#results
+					- if(chats != undefined || listofchats != null)
+						- var listofChats= chats.list
+							each chat in listofChats
+								a.chatPreview
+									.messageFriend(id= chat.with)
+										.chat-item.chat-item.pure-g
+											.pure-u
+												img.chat-avatar(width="64", height="64", alt="User avatar", src= chat.avatar)
+											.pure-u-3-4
+												h5.chat-name= chat.name
+												p.chat-desc Hey, I just wanted to check in with you from Toronto. I got here earlier today.
+			#main.pure-u-1(style="width: 100%; height: 95vh")
+				.chat-content
+					.chat-content-header.pure-g
+						.pure-u
+							img.chat-avatar#chatAvatar(width="64", height="64", alt="User avatar", src= userinfo.images[0].url, style="pading-top:10px")
+						.pure-u-3-4
+							- var name = userinfo.display_name 
+							h1.chat-content-title#user(data-uid= userinfo.id) Hello #{name} 
+					.chat-content-body
+			form.pure-form(style="width:100%;padding-left:160px;")
+				input.pure-input-1(type="text" placeholder="type your message here" style="width:90%")
+				button(type="submit").pure-button Send
+		script(src="https://yui-s.yahooapis.com/3.18.1/build/yui/yui-min.js")
+		script(src="/js/jquery.js")
+		script(src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js")
+		script(src='/js/socket.js')
+		script(src='/js/home.js')
+		script(src='/js/chat.js')
+		script.
+			YUI().use('node-base', 'node-event-delegate', function (Y) {
+			var menuButton = Y.one('.nav-menu-button'),
+			nav		= Y.one('#nav');
+			menuButton.on('click', function (e) {
+			nav.toggleClass('active');
+			});
+			});

@@ -1,0 +1,80 @@
+extend boilerplate.pug
+
+block titleconfig
+    title Home
+block append stylesheets
+    link(rel="stylesheet" href="/css/home.css")
+    
+block content
+    .modal#chatRoomConfirmation
+        .modal-background
+        .modal-content
+            .box
+        button.modal-close.is-large(aria-label="close")
+    - var name = userinfo.display_name 
+    h1#user(data-uid= userinfo.id) Hello #{name}
+    h3 Currently Playing:
+    p#trackName
+    p#trackArtists
+    img#albumArt
+    a#prev Previous
+    a#playpause Play
+    a#next Skip
+    hr
+    h1 search for frands
+        form#userSearch
+            .field.has-addons
+                .control
+                    input#search.input(type="text", placeholder="Type a name or email")
+                .control
+                    a.button.is-info Search
+    .results
+        ul#results
+    hr
+    h1 my frands
+    #onlineFriends
+        - var listofFriends= friends
+        each item in listofFriends
+            if(item.status == 'Online')
+                a.messageFriend
+                    .friend(id= item.socket, data-sid= item.id)
+                        p= item.name
+                        p(style="color:green")= item.status
+            else
+                a.messageFriend
+                    .friend(data-sid= item.id)
+                        p= item.name
+                        i
+                            p= item.status
+    hr
+    h1 Create chaty room
+    form#crateChatRoom
+            .field.has-addons
+                .control
+                    input#chatRoom.input(type="text", placeholder="Type a room name")
+                .control
+                    a.button.is-info Create
+    h1 Or join a chaty room!
+    form#joinChatRoom
+            .field.has-addons
+                .control
+                    input#chatRoomID.input(type="text", placeholder="Type room ID")
+                .control
+                    a.button.is-info Create
+    #chatrooms
+    hr
+    h1 chat righ here!
+        ul#typing
+        ul#messages
+        form#messageForm(action="")
+            input#m(autocomplete="off" data-from= userinfo.display_name )
+            button Send
+    hr
+    - var okkk = JSON.stringify(chats)
+    p= okkk
+block append scripts
+    script(src='/js/home.js')
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/3.1.2/rollups/aes.js")
+    script(src='/js/socket.js')
+    script(src='/js/chat.js')
+    
